@@ -33,7 +33,7 @@ export class EditUserComponent implements OnInit {
     });
     this.apiService.getUserById(+userId)
       .subscribe( data => {
-        this.editForm.setValue(data.result);
+        this.editForm.setValue(data.objet);
       });
   }
 
@@ -42,7 +42,7 @@ export class EditUserComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          if(data.status === 200) {
+          if(data.etat === 200) {
             alert('User updated successfully.');
             this.router.navigate(['list-user']);
           }else {

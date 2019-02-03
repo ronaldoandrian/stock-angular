@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {User} from "../model/user.model";
 import {Observable} from "rxjs/index";
 import {ApiResponse} from "../model/api.response";
@@ -8,10 +8,23 @@ import {ApiResponse} from "../model/api.response";
 export class ApiService {
 
   constructor(private http: HttpClient) { }
-  baseUrl: string = 'http://localhost:8080/users/';
+  baseUrl: string = 'http://localhost:4200/';
+/*
+  login(user) : Observable<ApiResponse> {
+    var header = new HttpHeaders();
+    console.log(user);
+    header.append("Accept", 'application/json');
+    header.append('Content-Type', 'application/json' );
+    return this.http.post<ApiResponse>('https://­secure-meadow-20148.h­erokuapp.com/­utilisateur/getUser', user, { headers: header });
+  }*/
 
   login(loginPayload) : Observable<ApiResponse> {
-    return this.http.post<ApiResponse>('https://­secure-meadow-20148.h­erokuapp.com/­utilisateur/getUser', loginPayload);
+    let getHeaders2: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+    var json ="username="+loginPayload.username+"&password="+loginPayload.password;
+
+    return this.http.post<ApiResponse>('https://­secure-meadow-20148.h­erokuapp.com/utilisateur/getUser',json,{headers:getHeaders2});
   }
 
   getUsers() : Observable<ApiResponse> {

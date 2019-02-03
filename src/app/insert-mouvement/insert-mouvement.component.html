@@ -1,0 +1,57 @@
+<div class="col-md-6 user-container">
+  <h2 class="text-center">Inserer un mouvement</h2>
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <p formControlName="error"></p>
+    <div class="form-group row">
+        <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Date</label>
+        <div class="col-sm-9">
+          <input type="datetime" required formControlName="date" class="form-control" id="exampleInputEmail2" placeholder="Entrer le date">
+          <div style="color: red" *ngIf="addForm.controls['date'].hasError('required') && addForm.controls['date'].touched">Ce champ est requis</div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+          <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Produit</label>
+          <div class="col-sm-9">
+            <input type="text" required formControlName="produit" class="form-control" id="exampleInputPassword2" placeholder="Entrer nom du produit">
+            <div style="color: red" *ngIf="addForm.controls['produit'].hasError('required') && addForm.controls['produit'].touched">Ce champ est requis</div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Quantite</label>
+            <div class="col-sm-9">
+              <input type="number" required formControlName="quantite" min="1" class="form-control" id="exampleInputPassword2" placeholder="Entrer la quantite">
+              <div style="color: red" *ngIf="addForm.controls['quantite'].hasError('required') && addForm.controls['quantite'].touched">Ce champ est requis</div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+              <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Prix unitaire</label>
+              <div class="col-sm-9">
+                <input type="number" required formControlName="prix" min="0" class="form-control" id="exampleInputPassword2" placeholder="Entrer le prix">
+                <div style="color: red" *ngIf="addForm.controls['prix'].hasError('required') && addForm.controls['prix'].touched">Ce champ est requis</div>
+              </div>
+            </div>
+
+          <div class="form-group row">
+              <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Type</label>
+              <div class="col-sm-9">
+                <select required formControlName="type" class="form-control">
+                    <option>Entrée</option>
+                    <option>Sortie</option>
+                </select>
+                <div style="color: red" *ngIf="addForm.controls['type'].hasError('required') && addForm.controls['type'].touched">Ce champ est requis</div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Magasin</label>
+                <div class="col-sm-9">
+                  <input type="text" id="magasin" required="required" formControlName="magasin" class="form-control" id="exampleInputPassword2" placeholder="Entrer nom magasin">
+                  <div style="color: red" *ngIf="addForm.controls['magasin'].hasError('required') && addForm.controls['magasin'].touched">Ce champ est requis</div>
+                </div>
+              </div>
+        <button type="submit" class="btn btn-success mr-2">Inserer</button>
+  </form>
+</div>

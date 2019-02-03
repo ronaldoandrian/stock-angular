@@ -2,6 +2,9 @@
 	<div class="w3ls-login box box--big">
 		<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 			<div class="agile-field-txt">
+					<div *ngIf="invalidLogin" class="error">
+							<div>Mail/Mot de passe invalide.</div>
+						</div>
 				<label for="username"> Mail/Identifiant</label>
 				<input autocomplete="off" type="text" formControlName="username" id="username" placeholder="Entrer votre adresse mail" required="" />
         <div class="error" *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">Identifiant ou mail requis!</div>
@@ -12,12 +15,8 @@
         <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Le mot de passe est requis</div>
       </div>
         <input type="submit" value="SE CONNECTER">
-        <div *ngIf="invalidLogin" class="error">
-          <div>Mail/Mot de passe invalide.</div>
-        </div>
 		</form>
 	</div>
-	<div class="copy-wthree">
-		<p>© Projet S5 - Février 2019 | Gestion des stocks
-		</p>
+	<div class="w3ls-login box box--big">
+			<p>© Projet S5 - Février 2019 | Gestion des stocks</p>
 	</div>

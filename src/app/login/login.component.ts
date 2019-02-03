@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ApiService} from "../core/api.service";
+import {User} from "../model/user.model";
 
 @Component({
   selector: 'app-login',
@@ -15,21 +16,21 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService) { }
 
   onSubmit() {
+    //this.router.navigate(['add-user']);
     if (this.loginForm.invalid) {
       return;
     }
-    const loginPayload = {
+    const user = {
       username: this.loginForm.controls.username.value,
       password: this.loginForm.controls.password.value
     }
-    this.apiService.login(loginPayload).subscribe(data => {
-      debugger;
-      if(data.status === 200) {
-        window.localStorage.setItem('token', data.result.token);
-        this.router.navigate(['list-user']);
+    this.apiService.login(user).subscribe(data => {
+      //debugger;
+      if(data.etat === 200) {
+        window.localStorage.setItem('token', data.objet);
+        this.router.navigate(['insert-mouvement']);
       }else {
         this.invalidLogin = true;
-        alert(data.message);
       }
     });
   }

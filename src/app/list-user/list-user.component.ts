@@ -21,7 +21,7 @@ export class ListUserComponent implements OnInit {
     }
     this.apiService.getUsers()
       .subscribe( data => {
-          this.users = data.result;
+          this.users = data.objet;
       });
   }
 
