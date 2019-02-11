@@ -9,14 +9,20 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
   baseUrl: string = 'http://localhost:4200/';
-/*
-  login(user) : Observable<ApiResponse> {
-    var header = new HttpHeaders();
-    console.log(user);
-    header.append("Accept", 'application/json');
-    header.append('Content-Type', 'application/json' );
-    return this.http.post<ApiResponse>('https://­secure-meadow-20148.h­erokuapp.com/­utilisateur/getUser', user, { headers: header });
-  }*/
+  apiUrl: string = 'https://­back-stock.herokuapp.­com/';
+
+  insertMouvement(mouvement) : Observable<ApiResponse> {
+    let getHeaders2: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+    var entree = 0, sortie = mouvement.quantite;
+    if(mouvement.type === "Entree") {
+      entree = mouvement.quantite;
+      sortie = 0;
+    }
+    var json ="insertMouvement/"+mouvement.date+"/"+mouvement.produit+"/"+entree+"/"+sortie+"/"+mouvement.prix+"/"+mouvement.magasin;
+    return this.http.get<ApiResponse>(this.apiUrl+json);
+  }
 
   login(loginPayload) : Observable<ApiResponse> {
     let getHeaders2: HttpHeaders = new HttpHeaders({
@@ -24,7 +30,7 @@ export class ApiService {
     });
     var json ="username="+loginPayload.username+"&password="+loginPayload.password;
 
-    return this.http.post<ApiResponse>('https://­secure-meadow-20148.h­erokuapp.com/utilisateur/getUser',json,{headers:getHeaders2});
+    return this.http.post<ApiResponse>(this.apiUrl+'/utilisateur/getUser',json,{headers:getHeaders2});
   }
 
   getUsers() : Observable<ApiResponse> {
