@@ -1,6 +1,8 @@
 <div class="col-md-6 user-container">
   <h2 class="text-center">Inserer un mouvement</h2>
   <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <p style="color: red">{{error}}</p>
+    <p style="color: green">{{success}}</p>
     <div class="form-group row">
         <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Date</label>
         <div class="col-sm-9">

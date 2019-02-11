@@ -16,7 +16,7 @@ export class ApiService {
       'Content-Type': 'application/x-www-form-urlencoded'
     });
     var entree = 0, sortie = mouvement.quantite;
-    if(mouvement.type === "Entrée") {
+    if(mouvement.type !== "Sortie") {
       entree = mouvement.quantite;
       sortie = 0;
     }
