@@ -1,0 +1,22 @@
+<h1>Se connecter au tableau de bord</h1>
+	<div class="w3ls-login box box--big">
+		<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+			<div class="agile-field-txt">
+					<div *ngIf="invalidLogin" class="error">
+							<div style="color: red">Mail/Mot de passe invalide.</div>
+						</div>
+				<label for="username"> Mail/Identifiant</label>
+				<input autocomplete="off" type="text" formControlName="username" id="username" placeholder="Entrer votre adresse mail" required="" />
+        <div class="error" *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">Identifiant ou mail requis!</div>
+      </div>
+			<div class="agile-field-txt">
+				<label for="pwd">Mot de passe:</label>
+				<input type="password" class="form-control" formControlName="password" id="pwd" placeholder="Entrer votre mot de passe" autocomplete="off">
+        <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Le mot de passe est requis</div>
+      </div>
+        <input type="submit" value="SE CONNECTER">
+		</form>
+	</div>
+	<div class="w3ls-login box box--big">
+			<p>© Projet S5 - Février 2019 | Gestion des stocks</p>
+	</div>

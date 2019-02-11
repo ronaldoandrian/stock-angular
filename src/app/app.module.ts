@@ -3,24 +3,22 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { AddUserComponent } from './add-user/add-user.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
-import { ListUserComponent } from './list-user/list-user.component';
 import {ApiService} from "./core/api.service";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
 import {routing} from "./app.routing";
 import {TokenInterceptor} from "./core/interceptor";
 import { InsertMouvementComponent } from './insert-mouvement/insert-mouvement.component';
+import { DashboardLoginComponent } from './dashboard-login/dashboard-login.component';
+import { DashboardHomeComponent } from './dashboard-home/dashboard-home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    AddUserComponent,
-    EditUserComponent,
-    ListUserComponent,
-    InsertMouvementComponent
+    InsertMouvementComponent,
+    DashboardLoginComponent,
+    DashboardHomeComponent
   ],
   imports: [
     BrowserModule,

@@ -33,7 +33,7 @@ export class ApiService {
     });
     var json ="username="+loginPayload.username+"&password="+loginPayload.password;
 
-    return this.http.post<ApiResponse>(this.apiUrl+'/utilisateur/getUser',json,{headers:getHeaders2});
+    return this.http.post<ApiResponse>(this.apiUrl+'utilisateur/getUser',json,{headers:getHeaders2});
   }
 
   getUsers() : Observable<ApiResponse> {
