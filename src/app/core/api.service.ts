@@ -16,12 +16,15 @@ export class ApiService {
       'Content-Type': 'application/x-www-form-urlencoded'
     });
     var entree = 0, sortie = mouvement.quantite;
-    if(mouvement.type === "Entree") {
+    if(mouvement.type === "Entrée") {
       entree = mouvement.quantite;
       sortie = 0;
     }
-    var json ="insertMouvement/"+mouvement.date+"/"+mouvement.produit+"/"+entree+"/"+sortie+"/"+mouvement.prix+"/"+mouvement.magasin;
-    return this.http.get<ApiResponse>(this.apiUrl+json);
+    let getHeaders: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+    var json ="mouvement/insertMouvement/"+mouvement.date+"/"+mouvement.produit+"/"+entree+"/"+sortie+"/"+mouvement.prix+"/"+mouvement.magasin;
+    return this.http.get<ApiResponse>(this.apiUrl+json,{headers:getHeaders});
   }
 
   login(loginPayload) : Observable<ApiResponse> {
