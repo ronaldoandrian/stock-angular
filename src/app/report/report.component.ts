@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../core/api.service';
+import { User } from '../model/user.model';
 
 @Component({
   selector: 'app-report',
@@ -13,6 +14,7 @@ export class ReportComponent implements OnInit {
   erreur: boolean = false;
   succes = "";
   error = "";
+  user: User;
   constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService) { }
 
   onSubmit() {
@@ -37,7 +39,10 @@ export class ReportComponent implements OnInit {
   }
 
   ngOnInit() {
-    window.localStorage.removeItem('token');
+    this.user = JSON.parse(window.localStorage.getItem('loginAdmin'));
+    if(this.user === undefined || this.user === null) {
+      this.router.navigate(['dashboard-login']);
+    }
     this.reportForm = this.formBuilder.group({
       date: ['', Validators.compose([Validators.required])],
       magasin: ['', Validators.compose([Validators.required])],

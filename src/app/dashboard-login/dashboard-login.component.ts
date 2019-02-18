@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../core/api.service';
+import { User } from '../model/user.model';
 
 @Component({
   selector: 'app-dashboard-login',
@@ -26,7 +27,7 @@ export class DashboardLoginComponent implements OnInit {
     this.apiService.login(user).subscribe(data => {
       //debugger;
       if(data.etat === 200) {
-        window.localStorage.setItem('token', data.objet);
+        window.localStorage.setItem('loginAdmin', JSON.stringify(data.objet));
         this.router.navigate(['dashboard']);
       }else {
         this.invalidLogin = true;

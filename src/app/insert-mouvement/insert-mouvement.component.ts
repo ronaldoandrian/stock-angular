@@ -5,6 +5,8 @@ import { ApiService } from '../core/api.service';
 import { Observable, merge, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
 import {NgbTypeahead} from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from '../login/login.component';
+import { User } from '../model/user.model';
 
 @Component({
   selector: 'app-insert-mouvement',
@@ -27,8 +29,13 @@ export class InsertMouvementComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,private router: Router, private apiService: ApiService) { }
   
   addForm: FormGroup;
+  user: User;
 
   ngOnInit() {
+    this.user = JSON.parse(window.localStorage.getItem('currentUser'));
+    if(this.user === undefined || this.user === null) {
+      this.router.navigate(['login']);
+    }
     this.addForm = this.formBuilder.group({
       date: ['', Validators.required],
       produit: ['', Validators.required],

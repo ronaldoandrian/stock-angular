@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ApiService} from "../core/api.service";
 import {User} from "../model/user.model";
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,17 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
   invalidLogin: boolean = false;
-  constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService) { }
+  
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
+  constructor(private formBuilder: FormBuilder, private router: Router, private apiService: ApiService) {
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUser = this.currentUserSubject.asObservable();
+  }
+
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+}
 
   onSubmit() {
     //this.router.navigate(['add-user']);
@@ -27,7 +38,8 @@ export class LoginComponent implements OnInit {
     this.apiService.login(user).subscribe(data => {
       //debugger;
       if(data.etat === 200) {
-        window.localStorage.setItem('token', data.objet);
+        window.localStorage.setItem('currentUser', JSON.stringify(data.objet));
+        this.currentUserSubject.next(data.objet);
         this.router.navigate(['insert-mouvement']);
       }else {
         this.invalidLogin = true;
@@ -36,7 +48,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    window.localStorage.removeItem('token');
+    window.localStorage.removeItem('currentUser');
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required])],
       password: ['', Validators.required]
