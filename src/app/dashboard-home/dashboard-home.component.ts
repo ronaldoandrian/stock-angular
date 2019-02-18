@@ -14,5 +14,4 @@ export class DashboardHomeComponent implements OnInit {
     // var token = (window.localStorage.getItem('token'));
     // this.admin = token;
   }
-
 }

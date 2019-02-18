@@ -40,6 +40,8 @@ export class InsertMouvementComponent implements OnInit {
   }
 
   onSubmit() {
+    this.error = "";
+    this.success = "";
     if(this.addForm.controls['magasin'].value === '') {
       this.addForm.controls['magasin'].hasError('required');
     }

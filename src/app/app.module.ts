@@ -11,6 +11,7 @@ import {TokenInterceptor} from "./core/interceptor";
 import { InsertMouvementComponent } from './insert-mouvement/insert-mouvement.component';
 import { DashboardLoginComponent } from './dashboard-login/dashboard-login.component';
 import { DashboardHomeComponent } from './dashboard-home/dashboard-home.component';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DashboardHomeComponent } from './dashboard-home/dashboard-home.componen
     LoginComponent,
     InsertMouvementComponent,
     DashboardLoginComponent,
-    DashboardHomeComponent
+    DashboardHomeComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,

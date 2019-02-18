@@ -11,6 +11,17 @@ export class ApiService {
   baseUrl: string = 'http://localhost:4200/';
   apiUrl: string = 'https://­back-stock.herokuapp.­com/';
 
+  insertreport(report) : Observable<ApiResponse> {
+    let getHeaders2: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+    let getHeaders: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
+    var json ="mouvement/insertReport/"+report.datereport+"/"+report.nomproduit+"/"+report.magasin+"/"+report.quantite;
+    return this.http.get<ApiResponse>(this.apiUrl+json,{headers:getHeaders});
+  }
+
   insertMouvement(mouvement) : Observable<ApiResponse> {
     let getHeaders2: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
