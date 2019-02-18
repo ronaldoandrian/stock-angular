@@ -12,9 +12,6 @@ export class ApiService {
   apiUrl: string = 'https://­back-stock.herokuapp.­com/';
 
   insertreport(report) : Observable<ApiResponse> {
-    let getHeaders2: HttpHeaders = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded'
-    });
     let getHeaders: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
     });

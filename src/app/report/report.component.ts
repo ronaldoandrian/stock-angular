@@ -25,7 +25,7 @@ export class ReportComponent implements OnInit {
     this.error = "";
     this.succes = "";
     this.apiService.insertreport(report).subscribe(data => {
-      if(data.etat === 100 || data.objet === true) {
+      if(data.etat === 200 || data.objet === true) {
         this.error = "";
         this.succes = "Insertion report avec succes!";
         this.router.navigate(['report']);
